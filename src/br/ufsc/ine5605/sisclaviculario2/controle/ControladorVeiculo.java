@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ufsc.ine5605.sisclaviculario2.controle;
+
+import br.ufsc.ine5605.sisclaviculario2.entidade.Veiculo;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,4 +9,13 @@ package br.ufsc.ine5605.sisclaviculario2.controle;
  */
 public class ControladorVeiculo {
     
+    private ArrayList<Veiculo> listaVeiculos;
+    
+    public ControladorVeiculo(){
+        this.listaVeiculos =  new ArrayList<>();
+    }
+    
+    public void incluiVeiculo(){
+        
+    }
 }
