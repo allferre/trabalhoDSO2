@@ -13,42 +13,30 @@ import java.util.ArrayList;
  */
 public class Funcionario {
     
-     public enum CargoFuncionario {
-        DIRETOR("Diretor"),
-        FUNCIONARIO("Funcionario");
-        public String mensagem;
 
-        CargoFuncionario(String mensagem) {
-
-            this.mensagem = mensagem;
-        }
-    }
-
-    private int numMatricula;
+    private String numMatricula;
     private String nome;
     private String dataNascimento;
-    private long telefone;
-    private CargoFuncionario cargo;
-    private boolean acessoLiberado;
+    private String telefone;
+    private String cargo;
+    private String acessoLiberado;
     private ArrayList<Veiculo> veiculos;
     
 
-    public Funcionario(int numMatricula, String nome, String dataNascimento, long telefone, CargoFuncionario cargo) {
+    public Funcionario(String numMatricula, String nome, String dataNascimento, String telefone, String cargo) {
         this.numMatricula = numMatricula;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.cargo = cargo;
-        this.acessoLiberado = false;
         this.veiculos = new ArrayList<>();
-
     }
 
-    public int getNumMatricula() {
+    public String getNumMatricula() {
         return numMatricula;
     }
 
-    public void setNumMatricula(int numMatricula) {
+    public void setNumMatricula(String numMatricula) {
         this.numMatricula = numMatricula;
     }
 
@@ -68,27 +56,27 @@ public class Funcionario {
         this.dataNascimento = dataNascimento;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public CargoFuncionario getCargoFuncionario() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(CargoFuncionario cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
-    public boolean getAcessoLiberado() {
+    public String getAcessoLiberado() {
         return acessoLiberado;
     }
 
-    public void setAcessoLiberado(boolean acessoLiberado) {
+    public void setAcessoLiberado(String acessoLiberado) {
         this.acessoLiberado = acessoLiberado;
     }
 
@@ -99,6 +87,8 @@ public class Funcionario {
     public void setVeiculos(ArrayList<Veiculo> veiculos) {
         this.veiculos = veiculos;
     }
+
+
     
     
     

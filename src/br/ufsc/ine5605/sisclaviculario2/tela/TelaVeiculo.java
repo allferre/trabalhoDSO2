@@ -55,30 +55,30 @@ public class TelaVeiculo extends JFrame {
         container.setLayout(new GridBagLayout());
         GridBagConstraints configPosicao = new GridBagConstraints();
         
-        try {
+       /*  try {
         jlPlaca = new JLabel();
         jlPlaca.setText("Digite a placa: ");
         configPosicao.gridx = 0; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (0,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
         container.add(jlPlaca, configPosicao);
-        
        
         MaskFormatter mascaraPlaca = new MaskFormatter("???-####");
         mascaraPlaca.setPlaceholderCharacter('_');
         JFormattedTextField campoPlaca = new JFormattedTextField(mascaraPlaca);
         mascaraPlaca.install(campoPlaca);
-
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (1,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
         campoPlaca.setVisible(true);
+        campoPlaca.setPreferredSize(new Dimension(70, 20));
         container.add(campoPlaca, configPosicao);
         
-        } catch(Exception ex) {}
+        }  catch(Exception ex) {} */
+        
+        
         
 
         // PLACA ---------------------------------------------------------------
-     /* jlPlaca = new JLabel();
-        jlPlaca.setText("Digite a placa: ");
+        jlPlaca = new JLabel("Digite a placa: ");
         configPosicao.gridx = 0; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (0,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
         container.add(jlPlaca, configPosicao);
@@ -87,8 +87,8 @@ public class TelaVeiculo extends JFrame {
         tfPlaca.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (1,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
-        tfPlaca.setPreferredSize(new Dimension(200, 20));
-        container.add(tfPlaca, configPosicao); */
+        tfPlaca.setPreferredSize(new Dimension(130, 20));
+        container.add(tfPlaca, configPosicao); 
 
         // MODELO --------------------------------------------------------------
         jlModelo = new JLabel();
@@ -166,10 +166,10 @@ public class TelaVeiculo extends JFrame {
         jbOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ctrlV.incluiVeiculo(campoPlaca.getValue().toString(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
+                ctrlV.incluiVeiculo(tfPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
             }
         });
-
+        
         jbOk.setText("OK");
         configPosicao.gridx = 1;
         configPosicao.gridy = 6;
@@ -178,7 +178,6 @@ public class TelaVeiculo extends JFrame {
         setSize(500, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
     }
 
     public ControladorVeiculo getCtrlV() {
@@ -190,7 +189,7 @@ public class TelaVeiculo extends JFrame {
     }
 
     public String getTfPlacaText() {
-        return campoPlaca.getValue().toString();
+        return tfPlaca.getText();
     }
 
     public String getTfModeloText() {
@@ -216,9 +215,9 @@ public class TelaVeiculo extends JFrame {
     private class GerenciadorBotoes implements ActionListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) { // como ela implemente a classe ActionListener ela obrigatoriamente precisa do metodo ActionPerformed
+        public void actionPerformed(ActionEvent e) { // como ela implementa a classe ActionListener ela obrigatoriamente precisa do metodo ActionPerformed
             if (e.getActionCommand().equals("INCLUIR")) {
-                ctrlV.incluiVeiculo(campoPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
+                ctrlV.incluiVeiculo(tfPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
             }
         }
     }

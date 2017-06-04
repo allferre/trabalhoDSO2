@@ -24,12 +24,10 @@ public class ControladorVeiculo implements ActionListener {
         telaVeiculo.setVisible(true);
     }
     
-    public void incluiVeiculo(){
-        
-    }
 
-    public void incluiVeiculo(String placa, String modelo, String marca, String ano, String quilometragem, String emprestado) {
-       System.out.println("Placa: "+placa);
+
+    public void incluiVeiculo(String novaPlaca, String modelo, String marca, String ano, String quilometragem, String emprestado) {
+       System.out.println("Placa: "+novaPlaca);
        System.out.println("Modelo: "+modelo);
        System.out.println("Marca: "+marca);
        System.out.println("Ano: "+ano);
