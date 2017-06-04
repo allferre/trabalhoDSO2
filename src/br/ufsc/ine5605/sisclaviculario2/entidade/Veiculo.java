@@ -9,11 +9,11 @@ public class Veiculo {
     private String placa;
     private String modelo;
     private String marca;
-    private int ano;
-    private int quilometragem;
-    private boolean emprestado;
+    private String ano;
+    private String quilometragem;
+    private String emprestado;
 
-    public Veiculo(String placa, String modelo, String marca, int ano, int quilometragem, boolean emprestado) {
+    public Veiculo(String placa, String modelo, String marca, String ano, String quilometragem, String emprestado) {
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
@@ -47,28 +47,30 @@ public class Veiculo {
         this.marca = marca;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
-    public int getQuilometragem() {
+    public String getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(int quilometragem) {
+    public void setQuilometragem(String quilometragem) {
         this.quilometragem = quilometragem;
     }
 
-    public boolean getEmprestado() {
+    public String getEmprestado() {
         return emprestado;
     }
 
-    public void setEmprestado(boolean emprestado) {
+    public void setEmprestado(String emprestado) {
         this.emprestado = emprestado;
     }
+
+ 
     
 }
