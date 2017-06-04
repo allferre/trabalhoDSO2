@@ -9,10 +9,13 @@ import java.awt.GridBagLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -22,6 +25,7 @@ public class TelaVeiculo extends JFrame {
 
     private ControladorVeiculo ctrlV;
     private GerenciadorBotoes btManager;
+    private JFormattedTextField campoPlaca;
 
     private JLabel jlPlaca;
     private JLabel jlModelo;
@@ -50,9 +54,30 @@ public class TelaVeiculo extends JFrame {
         container.setLayout(new FlowLayout());
         container.setLayout(new GridBagLayout());
         GridBagConstraints configPosicao = new GridBagConstraints();
+        
+        try {
+        jlPlaca = new JLabel();
+        jlPlaca.setText("Digite a placa: ");
+        configPosicao.gridx = 0; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (0,0)
+        configPosicao.gridy = 0; // x -> coluna e y -> linha
+        container.add(jlPlaca, configPosicao);
+        
+       
+        MaskFormatter mascaraPlaca = new MaskFormatter("???-####");
+        mascaraPlaca.setPlaceholderCharacter('_');
+        JFormattedTextField campoPlaca = new JFormattedTextField(mascaraPlaca);
+        mascaraPlaca.install(campoPlaca);
+
+        configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (1,0)
+        configPosicao.gridy = 0; // x -> coluna e y -> linha
+        campoPlaca.setVisible(true);
+        container.add(campoPlaca, configPosicao);
+        
+        } catch(Exception ex) {}
+        
 
         // PLACA ---------------------------------------------------------------
-        jlPlaca = new JLabel();
+     /* jlPlaca = new JLabel();
         jlPlaca.setText("Digite a placa: ");
         configPosicao.gridx = 0; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (0,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
@@ -63,7 +88,7 @@ public class TelaVeiculo extends JFrame {
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (1,0)
         configPosicao.gridy = 0; // x -> coluna e y -> linha
         tfPlaca.setPreferredSize(new Dimension(200, 20));
-        container.add(tfPlaca, configPosicao);
+        container.add(tfPlaca, configPosicao); */
 
         // MODELO --------------------------------------------------------------
         jlModelo = new JLabel();
@@ -76,7 +101,7 @@ public class TelaVeiculo extends JFrame {
         tfModelo.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (1,1)
         configPosicao.gridy = 1; // x -> coluna e y -> linha
-        tfModelo.setPreferredSize(new Dimension(200, 20));
+        tfModelo.setPreferredSize(new Dimension(130, 20));
         container.add(tfModelo, configPosicao);
 
         // MARCA ---------------------------------------------------------------
@@ -90,7 +115,7 @@ public class TelaVeiculo extends JFrame {
         tfMarca.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (2,1)
         configPosicao.gridy = 2; // x -> coluna e y -> linha
-        tfMarca.setPreferredSize(new Dimension(200, 20));
+        tfMarca.setPreferredSize(new Dimension(130, 20));
         container.add(tfMarca, configPosicao);
 
         // ANO -----------------------------------------------------------------
@@ -104,7 +129,7 @@ public class TelaVeiculo extends JFrame {
         tfAno.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (2,3)
         configPosicao.gridy = 3; // x -> coluna e y -> linha
-        tfAno.setPreferredSize(new Dimension(200, 20));
+        tfAno.setPreferredSize(new Dimension(130, 20));
         container.add(tfAno, configPosicao);
 
         // QUILOMETRAGEM -------------------------------------------------------
@@ -118,7 +143,7 @@ public class TelaVeiculo extends JFrame {
         tfQuilometragem.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (3,3)
         configPosicao.gridy = 4; // x -> coluna e y -> linha
-        tfQuilometragem.setPreferredSize(new Dimension(200, 20));
+        tfQuilometragem.setPreferredSize(new Dimension(130, 20));
         container.add(tfQuilometragem, configPosicao);
 
         // Emprestado ----------------------------------------------------------
@@ -132,7 +157,7 @@ public class TelaVeiculo extends JFrame {
         tfEmprestado.setText(" ");
         configPosicao.gridx = 1; // gridx e gridy usado pra posicionar(no caso) esse JLabel lbNome na posição (4,3)
         configPosicao.gridy = 5; // x -> coluna e y -> linha
-        tfEmprestado.setPreferredSize(new Dimension(200, 20));
+        tfEmprestado.setPreferredSize(new Dimension(130, 20));
         container.add(tfEmprestado, configPosicao);
 
         // BOTAO OK ------------------------------------------------------------
@@ -141,7 +166,7 @@ public class TelaVeiculo extends JFrame {
         jbOk.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ctrlV.incluiVeiculo(tfPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
+                ctrlV.incluiVeiculo(campoPlaca.getValue().toString(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
             }
         });
 
@@ -165,7 +190,7 @@ public class TelaVeiculo extends JFrame {
     }
 
     public String getTfPlacaText() {
-        return tfPlaca.getText();
+        return campoPlaca.getValue().toString();
     }
 
     public String getTfModeloText() {
@@ -193,8 +218,7 @@ public class TelaVeiculo extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) { // como ela implemente a classe ActionListener ela obrigatoriamente precisa do metodo ActionPerformed
             if (e.getActionCommand().equals("INCLUIR")) {
-                //ctrlP.incluiFuncionario(tfNome.getText(), tfFone.getText()); // no código seria usado o controladorFuncionario
-                ctrlV.incluiVeiculo(tfPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
+                ctrlV.incluiVeiculo(campoPlaca.getText(), tfModelo.getText(), tfMarca.getText(), tfAno.getText(), tfQuilometragem.getText(), tfEmprestado.getText());
             }
         }
     }
