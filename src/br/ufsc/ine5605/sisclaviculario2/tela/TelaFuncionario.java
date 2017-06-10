@@ -47,7 +47,7 @@ public class TelaFuncionario extends JFrame {
         this.ctrlF = owner;
     }
 
-    private void iniciaFuncionario() {
+    public void exibeTelaFuncionario() {
 
         Container container = getContentPane();
         container.setLayout(new FlowLayout());

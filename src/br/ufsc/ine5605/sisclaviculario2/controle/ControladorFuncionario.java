@@ -19,10 +19,18 @@ public class ControladorFuncionario implements ActionListener {
     
     private ArrayList<Funcionario> listaFuncionarios;
     private TelaFuncionario telaFuncionario ;
+    private static ControladorFuncionario INSTANCE;
     
     public ControladorFuncionario(){
         this.listaFuncionarios =  new ArrayList<>();
         this.telaFuncionario = new TelaFuncionario(this);
+    }
+    
+     public static ControladorFuncionario getINSTANCE() {
+        if (INSTANCE == null) {
+            return INSTANCE = new ControladorFuncionario();
+        }
+        return INSTANCE;
     }
 
     public void incluiFuncionario(String matricula, String nome, String dataNascimento, String telefone, String cargo) {
@@ -37,6 +45,10 @@ public class ControladorFuncionario implements ActionListener {
      @Override
     public void actionPerformed(ActionEvent ae) {
         incluiFuncionario(telaFuncionario.getTfMatriculaText(), telaFuncionario.getTfNomeText(), telaFuncionario.getTfDataNascimentoText(), telaFuncionario.getTfTelefoneText(), telaFuncionario.getTfCargoText());
+    }
+
+    public void exibeTelaFuncionario() {
+       telaFuncionario.exibeTelaFuncionario();
     }
     
 }
